@@ -13,7 +13,7 @@ SubElement(_dict, 'key').text = 'PayloadDisplayName'
 SubElement(_dict, 'string').text = '🇺🇲 美国 03'
 
 SubElement(_dict, 'key').text = 'PayloadIdentifier'
-SubElement(_dict, 'string').text = 'com.example.vpn'
+SubElement(_dict, 'string').text = 'com.example.vpn'  # 使用唯一的標識符
 
 SubElement(_dict, 'key').text = 'PayloadType'
 SubElement(_dict, 'string').text = 'Configuration'
@@ -30,7 +30,7 @@ SubElement(_dict, 'integer').text = '1'
 
 # 添加VPN配置信息
 SubElement(_dict, 'key').text = 'VPNType'
-SubElement(_dict, 'string').text = 'Trojan'
+SubElement(_dict, 'string').text = 'IPSec'  # 使用iOS支持的VPN類型
 
 SubElement(_dict, 'key').text = 'ServerAddress'
 SubElement(_dict, 'string').text = '2pwiyzakfjnmvikqu7la.wgetapi.com'
@@ -45,7 +45,7 @@ SubElement(_dict, 'key').text = 'SNI'
 SubElement(_dict, 'string').text = '92zpkcdwze29gaqizktn.appletls.com'
 
 SubElement(_dict, 'key').text = 'SkipCertVerify'
-SubElement(_dict, 'true').text = 'true'
+SubElement(_dict, 'true')  # 正確的方式來設置布爾值
 
 # 創建ElementTree對象並寫入文件
 tree = ElementTree(root)
