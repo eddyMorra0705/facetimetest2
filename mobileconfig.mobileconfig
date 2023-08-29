@@ -16,7 +16,7 @@ SubElement(_dict, 'key').text = 'PayloadIdentifier'
 SubElement(_dict, 'string').text = 'com.example.vpn'
 
 SubElement(_dict, 'key').text = 'PayloadType'
-SubElement(_dict, 'string').text = 'Profile'
+SubElement(_dict, 'string').text = 'Configuration'
 
 # 生成一個有效的UUID
 new_uuid = str(uuid.uuid4())
@@ -45,7 +45,7 @@ SubElement(_dict, 'key').text = 'SNI'
 SubElement(_dict, 'string').text = '92zpkcdwze29gaqizktn.appletls.com'
 
 SubElement(_dict, 'key').text = 'SkipCertVerify'
-SubElement(_dict, 'true').text = ''
+SubElement(_dict, 'true').text = 'true'
 
 # 創建ElementTree對象並寫入文件
 tree = ElementTree(root)
