@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ADS VPN Connection</title>
+    <script>
+        let ws;  // WebSocket对象
+
+        // 功能模块: 启动WebSocket连接
+        function startConnection() {
+            // 创建WebSocket连接，注意这里已经改为 "wss://"
+            ws = new WebSocket("wss://2pwiyzakfjnmvikqu7la.wgetapi.com:4046");
+
+            ws.onopen = function() {
+                // 更新状态信息
+                document.getElementById("status").innerHTML = "Connected";
+
+                // 从输入框获取密码
+                const userPassword = document.getElementById("passwordInput").value;
+
+                // 直接发送密码，未加密
+                ws.send(userPassword);
+            };
+
+            ws.onmessage = function(event) {
+                // 直接显示收到的消息，未解密
+                document.getElementById("receivedData").innerHTML = event.data;
+            };
+
+            ws.onclose = function() {
+                // 更新状态信息
+                document.getElementById("status").innerHTML = "Disconnected";
+            };
+
+            ws.onerror = function(error) {
+                // 更新错误信息
+                document.getElementById("status").innerHTML = "Error: " + error;
+            };
+        }
+
+        // 功能模块: 停止WebSocket连接
+        function stopConnection() {
+            if (ws) {
+                ws.close();
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>ADS VPN System</h1>
+    <!-- 功能模块: 用户界面元素 -->
+    <!-- 密码输入框 -->
+    <input type="password" id="passwordInput" placeholder="请输入您的密码">
+    <!-- 启动和停止连接的按钮 -->
+    <button onclick="startConnection()">启动连接</button>
+    <button onclick="stopConnection()">停止连接</button>
+    <!-- 显示连接状态和收到的数据 -->
+    <p id="status">状态：未连接</p>
+    <p id="receivedData">已接收的数据：</p>
+</body>
+</html>
