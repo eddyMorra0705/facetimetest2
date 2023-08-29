@@ -16,7 +16,7 @@ SubElement(_dict, 'key').text = 'PayloadIdentifier'
 SubElement(_dict, 'string').text = 'com.example.vpn'
 
 SubElement(_dict, 'key').text = 'PayloadType'
-SubElement(_dict, 'string').text = 'Configuration'
+SubElement(_dict, 'string').text = 'Profile'
 
 # 生成一個有效的UUID
 new_uuid = str(uuid.uuid4())
