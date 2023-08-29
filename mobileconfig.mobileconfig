@@ -1,14 +1,14 @@
-#mobileconfig.py
 from xml.etree.ElementTree import Element, SubElement, ElementTree
 import xml.dom.minidom
+import uuid  # 引入uuid模塊，用於生成有效的UUID
 
-# 创建根元素
+# 創建根元素，設置其版本為1.0
 root = Element('plist', version='1.0')
 
-# 创建dict元素
+# 在根元素下創建dict元素
 _dict = SubElement(root, 'dict')
 
-# 添加Payload基础信息
+# 添加基本的Payload信息
 SubElement(_dict, 'key').text = 'PayloadDisplayName'
 SubElement(_dict, 'string').text = '🇺🇲 美国 03'
 
@@ -18,8 +18,12 @@ SubElement(_dict, 'string').text = 'com.example.vpn'
 SubElement(_dict, 'key').text = 'PayloadType'
 SubElement(_dict, 'string').text = 'Configuration'
 
+# 生成一個有效的UUID
+new_uuid = str(uuid.uuid4())
+
+# 使用生成的有效UUID
 SubElement(_dict, 'key').text = 'PayloadUUID'
-SubElement(_dict, 'string').text = 'some-uuid-here'
+SubElement(_dict, 'string').text = new_uuid
 
 SubElement(_dict, 'key').text = 'PayloadVersion'
 SubElement(_dict, 'integer').text = '1'
@@ -43,12 +47,12 @@ SubElement(_dict, 'string').text = '92zpkcdwze29gaqizktn.appletls.com'
 SubElement(_dict, 'key').text = 'SkipCertVerify'
 SubElement(_dict, 'true').text = ''
 
-# 创建ElementTree对象并写入文件
+# 創建ElementTree對象並寫入文件
 tree = ElementTree(root)
 
-# 格式化输出
+# 格式化輸出XML字符串
 xml_str = xml.dom.minidom.parseString(ElementTree.tostring(root)).toprettyxml(indent="   ")
 
-# 保存到.mobileconfig文件
+# 將格式化的XML字符串保存到.mobileconfig文件中
 with open("trojan_vpn_config.mobileconfig", "w") as f:
     f.write(xml_str)
